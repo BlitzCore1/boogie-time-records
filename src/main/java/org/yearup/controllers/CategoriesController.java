@@ -46,12 +46,13 @@ public class CategoriesController
     // add the appropriate annotation for a get action
     @GetMapping("{categoryId}")
     @PreAuthorize("permitAll")
-    public Optional<Category> getById(@PathVariable int categoryId)
+    public ResponseEntity<Category> getById(@PathVariable int categoryId)
     {
         // get the category by id
         var category = categoryService.getCategoryById(categoryId);
 
-        return category;
+        return category.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // the url to return all products in category 1 would look like this
