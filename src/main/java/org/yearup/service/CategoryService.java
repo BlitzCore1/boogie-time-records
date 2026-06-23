@@ -24,7 +24,7 @@ public class CategoryService
         // get all categories
         var categories = categoryRepository.findAll();
 
-        return categoryRepository.findAll();
+        return categories;
     }
 
     public Optional<Category> getCategoryById(int categoryId)
