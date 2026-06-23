@@ -1,5 +1,6 @@
 package org.yearup.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.yearup.models.Product;
 import org.yearup.repository.ProductRepository;
@@ -11,6 +12,7 @@ public class ProductService
 {
     private final ProductRepository productRepository;
 
+    @Autowired
     public ProductService(ProductRepository productRepository)
     {
         this.productRepository = productRepository;
@@ -26,7 +28,6 @@ public class ProductService
                        .filter(p -> minPrice == null || p.getPrice() >= minPrice)
                        .filter(p -> maxPrice == null || p.getPrice() <= maxPrice)
                        .filter(p -> subCategory == null || subCategory.equalsIgnoreCase(p.getSubCategory()))
-                       .filter(Product::isFeatured)
                        .toList();
     }
 
