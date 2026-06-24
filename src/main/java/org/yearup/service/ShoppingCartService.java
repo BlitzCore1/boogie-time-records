@@ -52,4 +52,29 @@ public class ShoppingCartService
     }
 
     // add additional methods here
+
+    public ShoppingCart addProductToCart(int userId, int productID)
+    {
+        // checks to see if item is currently in the cart, if it is, it will increment the quantity by 1,
+        // if not, it will add a new item to the cart with a quantity of 1
+        CartItem item = shoppingCartRepository.findByUserIdAndProductId(userId, productID);
+
+        if (item == null)
+        {
+            item = new CartItem();
+            item.setUserId(userId);
+            item.setProductId(productID);
+            item.setQuantity(1);
+        }
+        else
+        {
+            int currentQuantity = item.getQuantity();
+            item.setQuantity(currentQuantity + 1);
+        }
+
+        shoppingCartRepository.save(item);
+
+        return getByUserId(userId);
+    }
+
 }
