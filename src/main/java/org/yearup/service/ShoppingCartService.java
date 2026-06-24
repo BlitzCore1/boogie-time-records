@@ -1,6 +1,7 @@
 package org.yearup.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import org.yearup.models.CartItem;
 import org.yearup.models.Product;
 import org.yearup.models.ShoppingCart;
@@ -77,4 +78,22 @@ public class ShoppingCartService
         return getByUserId(userId);
     }
 
+    public ShoppingCart updateProductInCart(int userId, int productID, int quantity)
+    {
+        CartItem item = shoppingCartRepository.findByUserIdAndProductId(userId, productID);
+
+        if (item == null)
+        {
+            throw new ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND, "Product not found in cart");
+        }
+        if (quantity < 1)
+        {
+            throw new ResponseStatusException(org.springframework.http.HttpStatus.BAD_REQUEST, "Quantity must be at least 1");
+        }
+
+        item.setQuantity(quantity);
+        shoppingCartRepository.save(item);
+
+        return getByUserId(userId);
+    }
 }
