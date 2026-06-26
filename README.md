@@ -6,6 +6,8 @@ This project is a backend API for an e-commerce Record Store application. The fr
 
 The Record Store allows users to browse music-related products, view product categories, log in, manage a shopping cart, and interact with the store through a connected frontend website.
 
+![boogie-time-records.png](screenshots/boogie-time-records.png)
+
 ## Tech Stack
 
 - Java
@@ -34,6 +36,8 @@ Completed functionality includes:
 - Update a category as an admin
 - Delete a category as an admin
 
+
+
 ### Phase 2: Product Bug Fixes
 
 I fixed bugs in the product search and product update functionality.
@@ -58,6 +62,9 @@ Completed functionality includes:
 - Clear all items from the current user’s cart
 - Return the updated cart after cart changes
 
+![add-to-cart.png](screenshots/add-to-cart.png)
+![cart.png](screenshots/cart.png)
+
 ### Phase 4: User Profile
 
 I implemented user profile functionality so logged-in users can view and update their profile information.
@@ -67,6 +74,8 @@ Completed functionality includes:
 - View current user profile
 - Update current user profile
 - Connect profile data to the logged-in user
+
+![profile.png](screenshots/profile.png)
 
 ## API Endpoints Worked On
 
@@ -119,3 +128,13 @@ The API should run on:
 
 ```text
 http://localhost:8080
+```
+### 4. Test the API Endpoints
+You can test the API endpoints using Insomnia. Use the provided endpoints to interact with the Record Store backend.
+
+![tests.png](screenshots/tests.png)
+
+## Interesting Code Highlights
+One important part of this project was the shopping cart feature. The cart required connecting the logged-in user to their saved cart items in the database.
+The cart feature uses the current user’s username, finds the user ID, loads cart rows from the database, looks up full product details, and returns a complete shopping cart response to the frontend.
+This helped me better understand how controllers, services, repositories, models, and database tables work together in a full-stack application.
