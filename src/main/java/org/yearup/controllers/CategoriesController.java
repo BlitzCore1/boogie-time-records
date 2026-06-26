@@ -10,7 +10,7 @@ import org.yearup.service.CategoryService;
 import org.yearup.service.ProductService;
 
 import java.util.List;
-import java.util.Optional;
+
 
 // add the annotations to make this a REST controller
 // add the annotation to make this controller the endpoint for the following url
